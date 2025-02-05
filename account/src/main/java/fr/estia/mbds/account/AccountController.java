@@ -11,21 +11,29 @@ import java.util.List;
 public class AccountController {
 
     private final AccountRepository accountRepository;
+    private final CustomerClient customerClient;
 
     @Autowired
-    public AccountController(AccountRepository accountRepository) {
+    public AccountController(AccountRepository accountRepository, CustomerClient customerClient) {
         this.accountRepository = accountRepository;
+        this.customerClient = customerClient;
     }
 
     @GetMapping("/accounts")
     public List<Account> getAccounts()
     {
-        return accountRepository.findAll();
+        List<Account> accounts = accountRepository.findAll();
+        accounts.forEach(account -> {
+            account.setCustomer(customerClient.getCustomerById(account.getCustomerId()));
+        });
+        return accounts;
     }
 
     @GetMapping("/account/{id}")
     public Account getAccountById(@PathVariable String id)
     {
-        return accountRepository.findById(id).orElse(null);
+        Account account = accountRepository.findById(id).orElse(null);
+        account.setCustomer(customerClient.getCustomerById(account.getCustomerId()));
+        return account;
     }
 }
