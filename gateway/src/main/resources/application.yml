@@ -1,12 +1,12 @@
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: customers
-          uri: http://localhost:8080/
-          predicates:
-            - Path=/customer/**,/customers/**
-        - id: accounts
-          uri: http://localhost:8081/
-          predicates:
-            - Path=/account/**,/accounts/**
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: customers
+#          uri: http://localhost:8080/
+#          predicates:
+#            - Path=/customer/**,/customers/**
+#        - id: accounts
+#          uri: http://localhost:8081/
+#          predicates:
+#            - Path=/account/**,/accounts/**
