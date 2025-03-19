@@ -20,7 +20,7 @@ fi
 for dir in "$BASE_DIR"/*/; do
 
  # Ignorer les dossiers .idea et .git
-  if [[ "$folder_name" == ".idea" || "$folder_name" == ".git" ]]; then
+  if [[ "$folder_name" == ".idea" || "$folder_name" == ".git" || "$folder_name" == "config-repo" ]]; then
     echo "Ignoré : $folder_name"
     continue
   fi
